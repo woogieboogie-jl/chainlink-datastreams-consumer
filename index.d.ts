@@ -53,8 +53,7 @@ declare class ChainlinkDataStreamsConsumer extends EventEmitter {
     Promise<void>;
   disconnect():
     void;
-  get feeds:
-    Set<string> & { add: never, delete: never, clear: never };
+  get feeds(): Set<string> & { add: never, delete: never, clear: never };
   generateHeaders(
     method: string,
     path: string,
@@ -101,6 +100,71 @@ declare type Report = {
       expiresAt: number;
       price: bigint;
       marketStatus: number;
+    }
+  | {
+      version: 'v5';
+      validFromTimestamp: bigint;
+      nativeFee: bigint;
+      linkFee: bigint;
+      expiresAt: number;
+      rate: bigint;
+      timestamp: number;
+      duration: number;
+    }
+  | {
+      version: 'v6';
+      validFromTimestamp: bigint;
+      nativeFee: bigint;
+      linkFee: bigint;
+      expiresAt: number;
+      price: bigint;
+      price2: bigint;
+      price3: bigint;
+      price4: bigint;
+      price5: bigint;
+    }
+  | {
+      version: 'v7';
+      validFromTimestamp: bigint;
+      nativeFee: bigint;
+      linkFee: bigint;
+      expiresAt: number;
+      exchangeRate: bigint;
+    }
+  | {
+      version: 'v8';
+      validFromTimestamp: bigint;
+      nativeFee: bigint;
+      linkFee: bigint;
+      expiresAt: number;
+      lastUpdateTimestamp: bigint;
+      price: bigint;
+      marketStatus: number;
+    }
+  | {
+      version: 'v9';
+      validFromTimestamp: bigint;
+      nativeFee: bigint;
+      linkFee: bigint;
+      expiresAt: number;
+      benchmark: bigint;
+      navDate: bigint;
+      aum: bigint;
+      ripcord: number;
+    }
+  | {
+      version: 'v10';
+      validFromTimestamp: bigint;
+      nativeFee: bigint;
+      linkFee: bigint;
+      expiresAt: number;
+      lastUpdateTimestamp: bigint;
+      price: bigint;
+      marketStatus: number;
+      currentMultiplier: bigint;
+      newMultiplier: bigint;
+      activationDateTime: number;
+      tokenizedPrice: bigint;
     }
 );
 

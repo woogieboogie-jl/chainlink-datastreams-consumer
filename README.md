@@ -20,6 +20,23 @@ You can add it to your project like this:
 npm i @hackbg/chainlink-datastreams-consumer
 ```
 
+## Supported Report Versions
+
+This library supports Chainlink Data Streams report versions V1 through V10:
+
+- **V1**: Legacy format (deprecated) - Basic price feed with bid/ask spreads and block information
+- **V2**: Basic price feed with fees - Contains benchmark price and fee information
+- **V3**: Price feed with bid/ask spreads - Extends V2 with bid and ask prices
+- **V4**: Price feed with market status - Extends V2 with market status information
+- **V5**: Rate feed - Contains rate, timestamp, and duration information
+- **V6**: Multi-price feed - Contains 5 different price points
+- **V7**: Exchange rate feed - Contains exchange rate information
+- **V8**: Price feed with last update timestamp - Extends V4 with last update timestamp
+- **V9**: NAV (Net Asset Value) feed - Contains benchmark, NAV date, AUM, and ripcord information
+- **V10**: Tokenized price feed - Contains price, market status, multipliers, and tokenized price
+
+Each version has specific fields and use cases. The library automatically detects the version from the feed ID and decodes the report accordingly.
+
 ## Connecting
 
 Use your authentication credentials to instantiate the default export of the module.

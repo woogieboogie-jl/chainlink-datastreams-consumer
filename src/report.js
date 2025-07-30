@@ -160,6 +160,77 @@ export class Report {
       { name: 'price', type: 'int192' },
       { name: 'marketStatus', type: 'uint32' },
     ],
+    v5: [
+      { name: 'feedId', type: 'bytes32' },
+      { name: 'validFromTimestamp', type: 'uint32' },
+      { name: 'observationsTimestamp', type: 'uint32' },
+      { name: 'nativeFee', type: 'uint192' },
+      { name: 'linkFee', type: 'uint192' },
+      { name: 'expiresAt', type: 'uint32' },
+      { name: 'rate', type: 'int192' },
+      { name: 'timestamp', type: 'uint32' },
+      { name: 'duration', type: 'uint32' },
+    ],
+    v6: [
+      { name: 'feedId', type: 'bytes32' },
+      { name: 'validFromTimestamp', type: 'uint32' },
+      { name: 'observationsTimestamp', type: 'uint32' },
+      { name: 'nativeFee', type: 'uint192' },
+      { name: 'linkFee', type: 'uint192' },
+      { name: 'expiresAt', type: 'uint32' },
+      { name: 'price', type: 'int192' },
+      { name: 'price2', type: 'int192' },
+      { name: 'price3', type: 'int192' },
+      { name: 'price4', type: 'int192' },
+      { name: 'price5', type: 'int192' },
+    ],
+    v7: [
+      { name: 'feedId', type: 'bytes32' },
+      { name: 'validFromTimestamp', type: 'uint32' },
+      { name: 'observationsTimestamp', type: 'uint32' },
+      { name: 'nativeFee', type: 'uint192' },
+      { name: 'linkFee', type: 'uint192' },
+      { name: 'expiresAt', type: 'uint32' },
+      { name: 'exchangeRate', type: 'int192' },
+    ],
+    v8: [
+      { name: 'feedId', type: 'bytes32' },
+      { name: 'validFromTimestamp', type: 'uint32' },
+      { name: 'observationsTimestamp', type: 'uint32' },
+      { name: 'nativeFee', type: 'uint192' },
+      { name: 'linkFee', type: 'uint192' },
+      { name: 'expiresAt', type: 'uint32' },
+      { name: 'lastUpdateTimestamp', type: 'uint64' },
+      { name: 'price', type: 'int192' },
+      { name: 'marketStatus', type: 'uint32' },
+    ],
+    v9: [
+      { name: 'feedId', type: 'bytes32' },
+      { name: 'validFromTimestamp', type: 'uint32' },
+      { name: 'observationsTimestamp', type: 'uint32' },
+      { name: 'nativeFee', type: 'uint192' },
+      { name: 'linkFee', type: 'uint192' },
+      { name: 'expiresAt', type: 'uint32' },
+      { name: 'benchmark', type: 'int192' },
+      { name: 'navDate', type: 'uint64' },
+      { name: 'aum', type: 'int192' },
+      { name: 'ripcord', type: 'uint32' },
+    ],
+    v10: [
+      { name: 'feedId', type: 'bytes32' },
+      { name: 'validFromTimestamp', type: 'uint32' },
+      { name: 'observationsTimestamp', type: 'uint32' },
+      { name: 'nativeFee', type: 'uint192' },
+      { name: 'linkFee', type: 'uint192' },
+      { name: 'expiresAt', type: 'uint32' },
+      { name: 'lastUpdateTimestamp', type: 'uint64' },
+      { name: 'price', type: 'int192' },
+      { name: 'marketStatus', type: 'uint32' },
+      { name: 'currentMultiplier', type: 'int192' },
+      { name: 'newMultiplier', type: 'int192' },
+      { name: 'activationDateTime', type: 'uint32' },
+      { name: 'tokenizedPrice', type: 'int192' },
+    ],
   };
 
   static feedIdToVersion = (feedId) => {
@@ -188,6 +259,18 @@ export class Report {
         return 'v3';
       case 4:
         return 'v4';
+      case 5:
+        return 'v5';
+      case 6:
+        return 'v6';
+      case 7:
+        return 'v7';
+      case 8:
+        return 'v8';
+      case 9:
+        return 'v9';
+      case 10:
+        return 'v10';
       default:
         throw new Error(
           `Unsupported version ${version} from feed ID ${feedId}`,

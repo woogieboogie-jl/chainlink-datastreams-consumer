@@ -403,4 +403,41 @@ describe('ChainlinkDataStreamsConsumer', function () {
       name: 'Error',
     });
   });
+
+  // V5-V10 Version Detection Tests
+  it('should parse V5 feed ID correctly', function () {
+    const feedId = '0x00051977c65d8be63af556e39a129d5af7e7389ede2a48bbc92618a88be3a20a';
+    const version = Report.feedIdToVersion(feedId);
+    assert.strictEqual(version, 'v5');
+  });
+
+  it('should parse V6 feed ID correctly', function () {
+    const feedId = '0x00061977c65d8be63af556e39a129d5af7e7389ede2a48bbc92618a88be3a20a';
+    const version = Report.feedIdToVersion(feedId);
+    assert.strictEqual(version, 'v6');
+  });
+
+  it('should parse V7 feed ID correctly', function () {
+    const feedId = '0x00071977c65d8be63af556e39a129d5af7e7389ede2a48bbc92618a88be3a20a';
+    const version = Report.feedIdToVersion(feedId);
+    assert.strictEqual(version, 'v7');
+  });
+
+  it('should parse V8 feed ID correctly', function () {
+    const feedId = '0x00081977c65d8be63af556e39a129d5af7e7389ede2a48bbc92618a88be3a20a';
+    const version = Report.feedIdToVersion(feedId);
+    assert.strictEqual(version, 'v8');
+  });
+
+  it('should parse V9 feed ID correctly', function () {
+    const feedId = '0x00091977c65d8be63af556e39a129d5af7e7389ede2a48bbc92618a88be3a20a';
+    const version = Report.feedIdToVersion(feedId);
+    assert.strictEqual(version, 'v9');
+  });
+
+  it('should parse V10 feed ID correctly', function () {
+    const feedId = '0x000a1977c65d8be63af556e39a129d5af7e7389ede2a48bbc92618a88be3a20a';
+    const version = Report.feedIdToVersion(feedId);
+    assert.strictEqual(version, 'v10');
+  });
 });

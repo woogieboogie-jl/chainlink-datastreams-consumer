@@ -32,3 +32,108 @@ Authentication Error Response Codes:
 | ----------------------------- | ------------------------------------------------------------------- | --------------- | ---------------------- |
 | feedID(s)                     | Report Feed ID(s) in hex format, may optionally be prefixed with 0x | list of bytes32 |                        |
 | timestamp                     | Retrieve report(s) whose timerange includes this number             | int32           | Granularity in seconds |
+
+### Report Versions
+
+The library supports report versions V1 through V10. Each version has different fields and use cases:
+
+#### V5 Report (Rate Feed)
+```javascript
+{
+  version: 'v5',
+  feedId: '0x...',
+  validFromTimestamp: 1234567890n,
+  observationsTimestamp: 1234567890n,
+  nativeFee: 1000000000000000000n,
+  linkFee: 1000000000000000000n,
+  expiresAt: 1234567890,
+  rate: 1000000000000000000n,
+  timestamp: 1234567890,
+  duration: 3600
+}
+```
+
+#### V6 Report (Multi-Price Feed)
+```javascript
+{
+  version: 'v6',
+  feedId: '0x...',
+  validFromTimestamp: 1234567890n,
+  observationsTimestamp: 1234567890n,
+  nativeFee: 1000000000000000000n,
+  linkFee: 1000000000000000000n,
+  expiresAt: 1234567890,
+  price: 1000000000000000000n,
+  price2: 1000000000000000000n,
+  price3: 1000000000000000000n,
+  price4: 1000000000000000000n,
+  price5: 1000000000000000000n
+}
+```
+
+#### V7 Report (Exchange Rate Feed)
+```javascript
+{
+  version: 'v7',
+  feedId: '0x...',
+  validFromTimestamp: 1234567890n,
+  observationsTimestamp: 1234567890n,
+  nativeFee: 1000000000000000000n,
+  linkFee: 1000000000000000000n,
+  expiresAt: 1234567890,
+  exchangeRate: 1000000000000000000n
+}
+```
+
+#### V8 Report (Price Feed with Last Update Timestamp)
+```javascript
+{
+  version: 'v8',
+  feedId: '0x...',
+  validFromTimestamp: 1234567890n,
+  observationsTimestamp: 1234567890n,
+  nativeFee: 1000000000000000000n,
+  linkFee: 1000000000000000000n,
+  expiresAt: 1234567890,
+  lastUpdateTimestamp: 1234567890n,
+  price: 1000000000000000000n,
+  marketStatus: 1
+}
+```
+
+#### V9 Report (NAV Feed)
+```javascript
+{
+  version: 'v9',
+  feedId: '0x...',
+  validFromTimestamp: 1234567890n,
+  observationsTimestamp: 1234567890n,
+  nativeFee: 1000000000000000000n,
+  linkFee: 1000000000000000000n,
+  expiresAt: 1234567890,
+  benchmark: 1000000000000000000n,
+  navDate: 1234567890n,
+  aum: 1000000000000000000n,
+  ripcord: 0
+}
+```
+
+#### V10 Report (Tokenized Price Feed)
+```javascript
+{
+  version: 'v10',
+  feedId: '0x...',
+  validFromTimestamp: 1234567890n,
+  observationsTimestamp: 1234567890n,
+  nativeFee: 1000000000000000000n,
+  linkFee: 1000000000000000000n,
+  expiresAt: 1234567890,
+  lastUpdateTimestamp: 1234567890n,
+  price: 1000000000000000000n,
+  marketStatus: 1,
+  currentMultiplier: 1000000000000000000n,
+  newMultiplier: 1000000000000000000n,
+  activationDateTime: 1234567890,
+  tokenizedPrice: 1000000000000000000n
+}
+```
