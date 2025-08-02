@@ -137,7 +137,7 @@ export class Report {
       { name: 'nativeFee', type: 'uint192' },
       { name: 'linkFee', type: 'uint192' },
       { name: 'expiresAt', type: 'uint32' },
-      { name: 'benchmarkPrice', type: 'int192' },
+      { name: 'price', type: 'int192' },
     ],
     v3: [
       { name: 'feedId', type: 'bytes32' },
@@ -146,7 +146,7 @@ export class Report {
       { name: 'nativeFee', type: 'uint192' },
       { name: 'linkFee', type: 'uint192' },
       { name: 'expiresAt', type: 'uint32' },
-      { name: 'benchmarkPrice', type: 'int192' },
+      { name: 'price', type: 'int192' },
       { name: 'bid', type: 'int192' },
       { name: 'ask', type: 'int192' },
     ],
