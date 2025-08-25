@@ -4,6 +4,8 @@ import { createMockServer } from './mock.js';
 import assert from 'node:assert';
 import 'dotenv/config';
 import { WebSocket as _WebSocket } from 'ws';
+import { AbiCoder } from 'ethers';
+
 const WebSocket = _WebSocket || globalThis.WebSocket;
 
 process.on('unhandledRejection', (reason, promise) => { throw reason });
@@ -250,5 +252,62 @@ describe('decoding', function () {
     assert.throws(() => Report.fromBulkAPIResponse({}), {
       name: 'Error',
     });
+  });
+});
+
+describe('Report Decoding', function () {
+  const coder = AbiCoder.defaultAbiCoder();
+
+  function createMockFullReport(reportBlob) {
+    return {
+      reportContext: ['0x0000000000000000000000000000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000000000000000000000000000'],
+      reportBlob: reportBlob,
+      rawRs: [],
+      rawSs: [],
+      rawVs: '0x0000000000000000000000000000000000000000000000000000000000000000',
+    };
+  }
+
+  it('should correctly decode a V7 report', function () {
+    const mockV7Data = {
+      feedId: '0x0700000000000000000000000000000000000000000000000000000000000000',
+      validFromTimestamp: 1672531200,
+      observationsTimestamp: 1672531260,
+      nativeFee: 100000000000000n,
+      linkFee: 200000000000000n,
+      expiresAt: 1672534800,
+      exchangeRate: 12345678901234567890n,
+    };
+    const reportBlob = coder.encode(Report.reportBlobAbiSchema.v7, Object.values(mockV7Data));
+    const mockFullReport = createMockFullReport(reportBlob);
+    const report = new Report({ fullReport: mockFullReport });
+
+    assert.strictEqual(report.version, 'v7');
+    assert.strictEqual(report.feedId, mockV7Data.feedId);
+    assert.strictEqual(report.exchangeRate, mockV7Data.exchangeRate);
+    assert.strictEqual(report.observationsTimestamp, mockV7Data.observationsTimestamp);
+  });
+
+  it('should correctly decode a V9 report', function () {
+    const mockV9Data = {
+      feedId: '0x0900000000000000000000000000000000000000000000000000000000000000',
+      validFromTimestamp: 1672531200,
+      observationsTimestamp: 1672531260,
+      nativeFee: 100000000000000n,
+      linkFee: 200000000000000n,
+      expiresAt: 1672534800,
+      benchmark: 98765432109876543210n,
+      navDate: 1672531200,
+      aum: 500000000000000000000n,
+      ripcord: 0,
+    };
+    const reportBlob = coder.encode(Report.reportBlobAbiSchema.v9, Object.values(mockV9Data));
+    const mockFullReport = createMockFullReport(reportBlob);
+    const report = new Report({ fullReport: mockFullReport });
+
+    assert.strictEqual(report.version, 'v9');
+    assert.strictEqual(report.feedId, mockV9Data.feedId);
+    assert.strictEqual(report.benchmark, mockV9Data.benchmark);
+    assert.strictEqual(report.aum, mockV9Data.aum);
   });
 });
